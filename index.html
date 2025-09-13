@@ -3,119 +3,152 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mi Empresa – Soluciones que funcionan</title>
-  <meta name="description" content="Ayudo a [tu cliente ideal] a conseguir [beneficio] con [tu servicio]." />
-  <meta property="og:title" content="Mi Empresa" />
-  <meta property="og:description" content="Soluciones que funcionan." />
+  <title>GMV Media & Marketing — Mercadeo, Redes y Web</title>
+  <meta name="description" content="GMV Media & Marketing: creación y diseño de páginas web, manejo de redes sociales y mercadeo digital en Puerto Rico." />
+  <meta property="og:title" content="GMV Media & Marketing" />
+  <meta property="og:description" content="Estrategias claras y contenido efectivo para atraer clientes y crecer tu marca." />
+  <meta property="og:type" content="website" />
+  <!-- Si subes una imagen a /assets/og-image.jpg se usará en las previsualizaciones -->
+  <meta property="og:image" content="assets/og-image.jpg" />
   <link rel="icon" href="assets/favicon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --navy:#0a1f44; /* azul marino */
+    }
+    html{ scroll-behavior:smooth; }
+  </style>
 </head>
-<body class="antialiased text-slate-800">
-  <header class="max-w-6xl mx-auto p-4 flex items-center justify-between">
-    <h1 class="font-bold text-xl">Mi Empresa</h1>
-    <nav class="space-x-4">
-      <a href="#servicios">Servicios</a>
-      <a href="#sobre">Sobre mí</a>
-      <a href="#contacto" class="px-3 py-2 rounded bg-black text-white">Contacto</a>
-    </nav>
+<body class="antialiased bg-white text-slate-800">
+
+  <!-- Header -->
+  <header class="border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full" style="background:var(--navy)"></div>
+        <span class="font-semibold tracking-wide">GMV <span class="text-slate-500">Media &amp; Marketing</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#servicios" class="hover:opacity-80">Servicios</a>
+        <a href="#sobre" class="hover:opacity-80">Sobre mí</a>
+        <a href="#contacto" class="px-3 py-2 rounded-lg text-white" style="background:var(--navy)">Contacto</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="bg-slate-50">
-      <div class="max-w-6xl mx-auto px-4 py-20 text-center">
-        <h2 class="text-4xl md:text-5xl font-extrabold">[Tu propuesta de valor clara]</h2>
-        <p class="mt-4 text-lg">Ayudo a [nicho] a lograr [resultado] con [tu método/servicio].</p>
-        <a href="https://wa.me/17873595526" class="mt-6 inline-block px-6 py-3 rounded-lg bg-black text-white">Habla conmigo por WhatsApp</a>
+  <main id="top">
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-slate-50">
+      <div class="absolute inset-0 -z-10 opacity-5" style="background:
+        radial-gradient(800px 400px at 20% -10%, var(--navy), transparent),
+        radial-gradient(800px 400px at 80% 110%, var(--navy), transparent);"></div>
+      <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
+          Mercadeo, Redes Sociales y Diseño Web <span class="text-slate-500">que convierten</span>
+        </h1>
+        <p class="mt-5 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+          En <strong>GMV Media &amp; Marketing</strong> diseño estrategias claras y contenido efectivo para atraer clientes y crecer tu marca.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://wa.me/17873595526" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-white font-medium" style="background:var(--navy)">
+            Hablemos por WhatsApp
+          </a>
+          <a href="#servicios" class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 hover:bg-white/60">
+            Ver servicios
+          </a>
+        </div>
       </div>
     </section>
 
-    <<section id="servicios" class="max-w-6xl mx-auto px-4 py-16">
-  <h3 class="text-2xl font-bold mb-6">Servicios</h3>
-  <ul class="grid md:grid-cols-3 gap-6">
-    
-    <!-- Servicio 1 -->
-    <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
-      <h4 class="font-semibold text-lg">Creación y diseño de páginas web</h4>
-      <p class="text-sm mt-2 text-slate-600">
-        Desarrollo de sitios web modernos, rápidos y optimizados para dispositivos móviles. 
-        Diseñados a tu medida para transmitir profesionalismo y atraer clientes.
+    <!-- Servicios -->
+    <section id="servicios" class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Servicios</h2>
+      <p class="mt-2 text-slate-600 max-w-2xl">Paquetes a la medida: empezamos simple, medimos y escalamos lo que funciona.</p>
+
+      <ul class="mt-8 grid gap-6 md:grid-cols-3">
+        <!-- Servicio 1 -->
+        <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
+          <h3 class="font-semibold text-lg">Creación y diseño de páginas web</h3>
+          <p class="text-sm mt-2 text-slate-600">
+            Sitios modernos, rápidos y mobile-first. Diseño a tu medida para transmitir profesionalismo y convertir visitas en clientes.
+          </p>
+        </li>
+
+        <!-- Servicio 2 -->
+        <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
+          <h3 class="font-semibold text-lg">Manejo de redes sociales</h3>
+          <p class="text-sm mt-2 text-slate-600">
+            Gestión de Instagram, Facebook y TikTok: estrategia, calendario, diseño de piezas, copies y community management.
+          </p>
+        </li>
+
+        <!-- Servicio 3 -->
+        <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
+          <h3 class="font-semibold text-lg">Mercadeo y publicidad digital</h3>
+          <p class="text-sm mt-2 text-slate-600">
+            Campañas en Meta Ads y Google Ads, testing A/B, segmentación, retargeting y reportes claros orientados a resultados.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Sobre mí -->
+    <section id="sobre" class="max-w-6xl mx-auto px-4 py-16 border-t border-slate-200">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">Sobre mí</h2>
+      <p class="text-slate-600 leading-relaxed">
+        Soy <strong>Giamkarlo Marrero Vélez</strong>, estudiante de la <strong>Universidad de Puerto Rico en Ponce</strong>, donde curso un
+        bachillerato en <strong>Mercadeo</strong> con una concentración menor en <strong>Gerencia</strong>.
       </p>
-    </li>
-    
-    <!-- Servicio 2 -->
-    <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
-      <h4 class="font-semibold text-lg">Manejo de redes sociales</h4>
-      <p class="text-sm mt-2 text-slate-600">
-        Gestión completa de tus redes (Instagram, Facebook, TikTok). 
-        Incluye calendario de contenido, diseño de publicaciones y administración de comunidad.
+      <p class="text-slate-600 leading-relaxed mt-3">
+        Desde mis estudios he descubierto mi pasión por ayudar a negocios y emprendedores a crecer mediante estrategias de marketing digital,
+        manejo efectivo de redes sociales y el diseño de páginas web modernas. Mi meta es combinar la teoría académica con la práctica real para
+        ofrecer soluciones creativas, accesibles y enfocadas en resultados.
       </p>
-    </li>
-    
-    <!-- Servicio 3 -->
-    <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
-      <h4 class="font-semibold text-lg">Mercadeo y publicidad digital</h4>
-      <p class="text-sm mt-2 text-slate-600">
-        Estrategias de marketing digital para atraer y fidelizar clientes: campañas pagadas en 
-        Meta Ads, Google Ads y más, con reportes claros de resultados.
+      <p class="text-slate-600 leading-relaxed mt-3">
+        Creo en el poder de la comunicación clara, el análisis de datos y la innovación constante para transformar ideas en proyectos que generen
+        impacto. Cada cliente es una oportunidad para aprender, crear y aportar valor real.
       </p>
-    </li>
-  
-  </ul>
-</section>
+    </section>
 
+    <!-- Contacto -->
+    <section id="contacto" class="max-w-4xl mx-auto px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
+      <p class="mt-2 text-slate-600">Cuéntame qué necesitas y te propongo el plan más simple para empezar.</p>
 
-    <section id="sobre" class="max-w-6xl mx-auto px-4 py-16">
-  <h3 class="text-2xl font-bold mb-4">Sobre mí</h3>
-  <p class="text-slate-600 leading-relaxed">
-    Soy <strong>Giamkarlo Marrero Vélez</strong>, estudiante de la 
-    <strong>Universidad de Puerto Rico en Ponce</strong>, donde curso un 
-    bachillerato en <strong>Mercadeo</strong> con una concentración menor en 
-    <strong>Gerencia</strong>. 
-  </p>
-  <p class="text-slate-600 leading-relaxed mt-3">
-    Desde mis estudios he descubierto mi pasión por ayudar a negocios y emprendedores a crecer mediante estrategias de marketing digital, manejo efectivo de redes sociales y el diseño de páginas web modernas. Mi meta es combinar la teoría académica con la práctica real para ofrecer soluciones creativas, accesibles y enfocadas en resultados. 
-  </p>
-  <p class="text-slate-600 leading-relaxed mt-3">
-    Creo en el poder de la comunicación clara, el análisis de datos y la innovación constante para transformar ideas en proyectos que generen impacto. Cada cliente es una oportunidad para aprender, crear y aportar valor real.
-  </p>
-</section>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <!-- WhatsApp directo -->
+        <a href="https://wa.me/17873595526" class="flex items-center justify-center px-6 py-4 rounded-xl text-white font-medium text-center" style="background:var(--navy)">
+          Escribir por WhatsApp<br><span class="opacity-80 text-sm">1787 359 5526</span>
+        </a>
 
-
-    <section id="contacto" class="max-w-3xl mx-auto px-4 py-16">
-  <h3 class="text-2xl font-bold mb-4">Contacto</h3>
-  
-  <!-- WhatsApp directo -->
-  <p class="mb-4">
-    Escríbeme por WhatsApp: 
-    <a class="underline" href="https://wa.me/17873595526">
-      1787 359 5526
-    </a>
-  </p>
-
-  <!-- Email directo -->
-  <p class="mb-4">
-    O envíame un correo a: 
-    <a class="underline" href="mailto:gmvmediaandmarketing@gmail.com">
-      gmvmediaandmarketing@gmail.com
-    </a>
-  </p>
-</section>
-
-      <!-- Opción Formspree (gratis) -->
-      <form action="https://formspree.io/f/TU-CODIGO" method="POST" class="space-y-3">
-        <input class="w-full p-3 border rounded" name="nombre" placeholder="Tu nombre" required />
-        <input class="w-full p-3 border rounded" name="email" type="email" placeholder="Tu email" required />
-        <textarea class="w-full p-3 border rounded" name="mensaje" rows="4" placeholder="Cuéntame qué necesitas" required></textarea>
-        <button class="px-5 py-3 rounded bg-black text-white">Enviar</button>
-      </form>
+        <!-- Email directo -->
+        <div class="p-6 border border-slate-200 rounded-xl">
+          <p class="text-sm text-slate-600">Correo</p>
+          <a class="mt-2 inline-block underline break-all" href="mailto:gmvmediaandmarketing@gmail.com">
+            gmvmediaandmarketing@gmail.com
+          </a>
+          <!-- Si luego usas Formspree, aquí podrías volver a poner el formulario -->
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="text-center text-sm text-slate-500 p-6">
-    © <span id="y"></span> Mi Empresa • <a href="/privacidad.html" class="underline">Privacidad</a>
+  <!-- Footer -->
+  <footer class="border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <span id="y"></span> GMV Media &amp; Marketing</p>
+      <div class="flex items-center gap-4">
+        <a href="#servicios" class="hover:underline">Servicios</a>
+        <a href="#sobre" class="hover:underline">Sobre mí</a>
+        <a href="#contacto" class="hover:underline">Contacto</a>
+        <a href="mailto:gmvmediaandmarketing@gmail.com" class="hover:underline">gmvmediaandmarketing@gmail.com</a>
+      </div>
+    </div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
 
