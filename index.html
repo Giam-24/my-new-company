@@ -6,23 +6,86 @@
   <title>GMV Media & Marketing — Mercadeo, Redes y Web</title>
   <meta name="description" content="GMV Media & Marketing: creación y diseño de páginas web, manejo de redes sociales y mercadeo digital en Puerto Rico." />
   <meta property="og:title" content="GMV Media & Marketing" />
-  <meta property="og:description" content="Estrategias claras y contenido efectivo para atraer clientes y crecer tu marca." />
+  <meta property="og:description" content="Ayudo a emprendedores y negocios locales a crecer su presencia digital con marketing estratégico, manejo de redes y páginas web modernas." />
   <meta property="og:type" content="website" />
-  <!-- Si subes una imagen a /assets/og-image.jpg se usará en las previsualizaciones -->
   <meta property="og:image" content="assets/og-image.jpg" />
   <link rel="icon" href="assets/favicon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     :root{
       --navy:#0a1f44; /* azul marino */
     }
     html{ scroll-behavior:smooth; }
+
+    /* Fondo global suave: degradés + grid sutil */
+    body{
+      background:
+        radial-gradient(1000px 600px at -10% -10%, rgba(10,31,68,.06), transparent),
+        radial-gradient(900px 500px at 110% 120%, rgba(10,31,68,.05), transparent),
+        url("data:image/svg+xml;utf8,\
+        <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'>\
+          <path d='M32 0H0V32' stroke='rgba(15,23,42,0.06)'/>\
+        </svg>") repeat;
+      background-attachment: fixed;
+    }
+
+    /* Textura suave en el Hero (diagonales muy tenues) */
+    .hero-texture::before{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(120deg, rgba(10,31,68,.04) 0%, rgba(10,31,68,0) 35%),
+        repeating-linear-gradient(135deg, rgba(15,23,42,.035) 0 2px, rgba(15,23,42,0) 2px 8px);
+      mix-blend-mode:multiply;
+    }
+
+    /* Tarjetas con borde degradé y elevación sutil */
+    .card{
+      position:relative;
+      background:#fff;
+      border-radius:1rem;
+      border:1px solid rgba(100,116,139,.25);
+      box-shadow:0 1px 2px rgba(2,6,23,.04);
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(10,31,68,.35), rgba(10,31,68,0));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 24px rgba(2,6,23,.08);
+      border-color:rgba(100,116,139,.35);
+    }
+
+    /* Botón navy con efecto “shine” */
+    .btn-navy{
+      position:relative; overflow:hidden;
+      background:var(--navy); color:#fff;
+    }
+    .btn-navy::after{
+      content:""; position:absolute; inset:-100% -30% auto auto; width:40%;
+      transform:rotate(25deg);
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      transition:transform .45s ease;
+    }
+    .btn-navy:hover::after{ transform:translateX(-140%) rotate(25deg); }
   </style>
 </head>
-<body class="antialiased bg-white text-slate-800">
 
-  <!-- Header -->
-  <header class="border-b border-slate-200">
+<body class="antialiased text-slate-800">
+
+  <!-- Header fijo con sombra en scroll -->
+  <header id="topbar" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 transition-shadow">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="#top" class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-full" style="background:var(--navy)"></div>
@@ -37,38 +100,45 @@
   </header>
 
   <main id="top">
-  <!-- Hero -->
-<section class="relative overflow-hidden bg-slate-50">
-  <div class="absolute inset-0 -z-10 opacity-5" style="background:
-    radial-gradient(800px 400px at 20% -10%, var(--navy), transparent),
-    radial-gradient(800px 400px at 80% 110%, var(--navy), transparent);"></div>
-  <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
-    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
-      Ayudo a emprendedores y negocios locales a <span class="text-slate-500">crecer su presencia digital</span>
-    </h1>
-    <p class="mt-5 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
-      Con marketing estratégico, manejo de redes sociales y páginas web modernas, 
-      en <strong>GMV Media &amp; Marketing</strong> impulsamos tu marca hacia el siguiente nivel.
-    </p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="https://wa.me/17873595526" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-white font-medium" style="background:var(--navy)">
-        Hablemos por WhatsApp
-      </a>
-      <a href="#servicios" class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 hover:bg-white/60">
-        Ver servicios
-      </a>
+    <!-- Hero con textura -->
+    <section class="relative overflow-hidden bg-slate-50 hero-texture">
+      <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
+          Ayudo a emprendedores y negocios locales a <span class="text-slate-500">crecer su presencia digital</span>
+        </h1>
+        <p class="mt-5 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+          Con marketing estratégico, manejo de redes sociales y páginas web modernas,
+          en <strong>GMV Media &amp; Marketing</strong> impulsamos tu marca hacia el siguiente nivel.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://wa.me/17873595526" class="btn-navy inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium">
+            Hablemos por WhatsApp
+          </a>
+          <a href="#servicios" class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 hover:bg-white/60">
+            Ver servicios
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Separador ondulado -->
+    <div aria-hidden="true">
+      <svg viewBox="0 0 1440 120" class="w-full block" preserveAspectRatio="none">
+        <path d="M0,64 C240,112 480,0 720,32 C960,64 1200,144 1440,96 L1440,0 L0,0 Z"
+              fill="rgba(10,31,68,0.06)"></path>
+      </svg>
     </div>
-  </div>
-</section>
 
     <!-- Servicios -->
     <section id="servicios" class="max-w-6xl mx-auto px-4 py-16">
+      <div class="h-[2px] w-16 rounded-full mb-3"
+           style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold">Servicios</h2>
       <p class="mt-2 text-slate-600 max-w-2xl">Paquetes a la medida: empezamos simple, medimos y escalamos lo que funciona.</p>
 
       <ul class="mt-8 grid gap-6 md:grid-cols-3">
         <!-- Servicio 1 -->
-        <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
+        <li class="card p-6 shadow-sm hover:shadow">
           <h3 class="font-semibold text-lg">Creación y diseño de páginas web</h3>
           <p class="text-sm mt-2 text-slate-600">
             Sitios modernos, rápidos y mobile-first. Diseño a tu medida para transmitir profesionalismo y convertir visitas en clientes.
@@ -76,7 +146,7 @@
         </li>
 
         <!-- Servicio 2 -->
-        <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
+        <li class="card p-6 shadow-sm hover:shadow">
           <h3 class="font-semibold text-lg">Manejo de redes sociales</h3>
           <p class="text-sm mt-2 text-slate-600">
             Gestión de Instagram, Facebook y TikTok: estrategia, calendario, diseño de piezas, copies y community management.
@@ -84,7 +154,7 @@
         </li>
 
         <!-- Servicio 3 -->
-        <li class="p-6 border rounded-2xl shadow-sm hover:shadow transition">
+        <li class="card p-6 shadow-sm hover:shadow">
           <h3 class="font-semibold text-lg">Mercadeo y publicidad digital</h3>
           <p class="text-sm mt-2 text-slate-600">
             Campañas en Meta Ads y Google Ads, testing A/B, segmentación, retargeting y reportes claros orientados a resultados.
@@ -95,6 +165,8 @@
 
     <!-- Sobre mí -->
     <section id="sobre" class="max-w-6xl mx-auto px-4 py-16 border-t border-slate-200">
+      <div class="h-[2px] w-16 rounded-full mb-3"
+           style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold mb-4">Sobre mí</h2>
       <p class="text-slate-600 leading-relaxed">
         Soy <strong>Giamkarlo Marrero Vélez</strong>, estudiante de la <strong>Universidad de Puerto Rico en Ponce</strong>, donde curso un
@@ -113,26 +185,40 @@
 
     <!-- Contacto -->
     <section id="contacto" class="max-w-4xl mx-auto px-4 py-16">
+      <div class="h-[2px] w-16 rounded-full mb-3"
+           style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
       <p class="mt-2 text-slate-600">Cuéntame qué necesitas y te propongo el plan más simple para empezar.</p>
 
       <div class="mt-6 grid md:grid-cols-2 gap-6">
         <!-- WhatsApp directo -->
-        <a href="https://wa.me/17873595526" class="flex items-center justify-center px-6 py-4 rounded-xl text-white font-medium text-center" style="background:var(--navy)">
+        <a href="https://wa.me/17873595526" class="btn-navy flex items-center justify-center px-6 py-4 rounded-xl font-medium text-center">
           Escribir por WhatsApp<br><span class="opacity-80 text-sm">1787 359 5526</span>
         </a>
 
         <!-- Email directo -->
-        <div class="p-6 border border-slate-200 rounded-xl">
+        <div class="card p-6">
           <p class="text-sm text-slate-600">Correo</p>
           <a class="mt-2 inline-block underline break-all" href="mailto:gmvmediaandmarketing@gmail.com">
             gmvmediaandmarketing@gmail.com
           </a>
-          <!-- Si luego usas Formspree, aquí podrías volver a poner el formulario -->
+          <!-- Si luego usas Formspree, aquí puedes insertar el formulario -->
         </div>
       </div>
     </section>
   </main>
+
+  <!-- CTA final -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-14 text-center rounded-3xl border border-slate-200 bg-slate-50">
+      <h3 class="text-2xl md:text-3xl font-bold">¿Listo para impulsar tu marca?</h3>
+      <p class="mt-2 text-slate-600">Escríbeme y te propongo el plan más simple para empezar.</p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://wa.me/17873595526" class="btn-navy px-6 py-3 rounded-xl">WhatsApp</a>
+        <a href="mailto:gmvmediaandmarketing@gmail.com" class="px-6 py-3 rounded-xl border border-slate-300">Correo</a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="border-t border-slate-200">
@@ -147,9 +233,15 @@
     </div>
   </footer>
 
+  <!-- Script: sombra al hacer scroll -->
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('shadow-md', window.scrollY > 4);
+    });
   </script>
 </body>
 </html>
+
 
