@@ -13,9 +13,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root{ --navy:#0a1f44; }
+    :root{ --navy:#0a1f44; }  /* azul marino */
     html{ scroll-behavior:smooth; }
 
+    /* Fondo global suave: degradés + grid sutil */
     body{
       background:
         radial-gradient(1000px 600px at -10% -10%, rgba(10,31,68,.06), transparent),
@@ -27,6 +28,7 @@
       background-attachment: fixed;
     }
 
+    /* Textura suave en el Hero (diagonales muy tenues) */
     .hero-texture::before{
       content:"";
       position:absolute; inset:0;
@@ -37,6 +39,7 @@
       mix-blend-mode:multiply;
     }
 
+    /* Tarjetas con borde degradé y elevación sutil */
     .card{
       position:relative;
       background:#fff;
@@ -62,6 +65,7 @@
       border-color:rgba(100,116,139,.35);
     }
 
+    /* Botón navy con efecto “shine” */
     .btn-navy{
       position:relative; overflow:hidden;
       background:var(--navy); color:#fff;
@@ -78,73 +82,120 @@
 
 <body class="antialiased text-slate-800">
 
-  <!-- Header -->
+  <!-- Header: menú móvil + desktop -->
   <header id="topbar" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 transition-shadow">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- Branding (avatar + nombre) -->
       <a href="#top" class="flex items-center gap-3">
-        <!-- Foto del header -->
         <img src="perfil.jpg" alt="Foto de Giamkarlo Marrero Vélez"
-             class="w-10 h-10 rounded-full object-cover border-2 border-slate-200">
+             width="80" height="80" loading="lazy" decoding="async"
+             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-slate-200">
         <span class="font-semibold tracking-wide">GMV <span class="text-slate-500">Media &amp; Marketing</span></span>
       </a>
+
+      <!-- Botón hamburguesa (solo móvil) -->
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-300"
+              aria-label="Abrir menú" aria-expanded="false">
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
+             stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
+             stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Nav desktop -->
       <nav class="hidden md:flex items-center gap-6 text-sm">
         <a href="#servicios" class="hover:opacity-80">Servicios</a>
         <a href="#sobre" class="hover:opacity-80">Sobre mí</a>
-        <a href="#contacto" class="px-3 py-2 rounded-lg text-white" style="background:var(--navy)">Contacto</a>
+        <a href="#contacto" class="px-3 py-2 rounded-lg text-white bg-[var(--navy)]">Contacto</a>
       </nav>
     </div>
+
+    <!-- Nav móvil desplegable -->
+    <nav id="mobileNav" class="md:hidden hidden border-t border-slate-200 bg-white">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
+        <a href="#servicios" class="py-2">Servicios</a>
+        <a href="#sobre" class="py-2">Sobre mí</a>
+        <a href="#contacto" class="py-2 px-3 rounded-lg text-white bg-[var(--navy)] w-fit">Contacto</a>
+      </div>
+    </nav>
   </header>
 
   <main id="top">
-    <!-- Hero -->
+    <!-- Hero con textura -->
     <section class="relative overflow-hidden bg-slate-50 hero-texture">
-      <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-28 text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
           Ayudo a emprendedores y negocios locales a <span class="text-slate-500">crecer su presencia digital</span>
         </h1>
-        <p class="mt-5 text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+        <p class="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl sm:max-w-3xl mx-auto">
           Con marketing estratégico, manejo de redes sociales y páginas web modernas,
           en <strong>GMV Media &amp; Marketing</strong> impulsamos tu marca hacia el siguiente nivel.
         </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="https://wa.me/17873595526" class="btn-navy inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium">
+        <div class="mt-7 sm:mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://wa.me/17873595526"
+             class="btn-navy inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium w-full sm:w-auto">
             Hablemos por WhatsApp
           </a>
-          <a href="#servicios" class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 hover:bg-white/60">
+          <a href="#servicios"
+             class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 hover:bg-white/60 w-full sm:w-auto">
             Ver servicios
           </a>
         </div>
       </div>
     </section>
 
+    <!-- Separador ondulado -->
+    <div aria-hidden="true">
+      <svg viewBox="0 0 1440 120" class="w-full block" preserveAspectRatio="none">
+        <path d="M0,64 C240,112 480,0 720,32 C960,64 1200,144 1440,96 L1440,0 L0,0 Z"
+              fill="rgba(10,31,68,0.06)"></path>
+      </svg>
+    </div>
+
     <!-- Servicios -->
-    <section id="servicios" class="max-w-6xl mx-auto px-4 py-16">
+    <section id="servicios" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+      <div class="h-[2px] w-16 rounded-full mb-3"
+           style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold">Servicios</h2>
-      <ul class="mt-8 grid gap-6 md:grid-cols-3">
-        <li class="card p-6">
+      <p class="mt-2 text-slate-600 max-w-2xl">Paquetes a la medida: empezamos simple, medimos y escalamos lo que funciona.</p>
+
+      <ul class="mt-6 sm:mt-8 grid gap-4 sm:gap-6 md:grid-cols-3">
+        <li class="card p-5 sm:p-6">
           <h3 class="font-semibold text-lg">Creación y diseño de páginas web</h3>
-          <p class="text-sm mt-2 text-slate-600">Sitios modernos, rápidos y mobile-first.</p>
+          <p class="text-sm mt-2 text-slate-600">
+            Sitios modernos, rápidos y mobile-first. Diseño a tu medida para transmitir profesionalismo y convertir visitas en clientes.
+          </p>
         </li>
-        <li class="card p-6">
+        <li class="card p-5 sm:p-6">
           <h3 class="font-semibold text-lg">Manejo de redes sociales</h3>
-          <p class="text-sm mt-2 text-slate-600">Gestión de Instagram, Facebook y TikTok.</p>
+          <p class="text-sm mt-2 text-slate-600">
+            Gestión de Instagram, Facebook y TikTok: estrategia, calendario, diseño de piezas, copies y community management.
+          </p>
         </li>
-        <li class="card p-6">
+        <li class="card p-5 sm:p-6">
           <h3 class="font-semibold text-lg">Mercadeo y publicidad digital</h3>
-          <p class="text-sm mt-2 text-slate-600">Campañas en Meta Ads y Google Ads.</p>
+          <p class="text-sm mt-2 text-slate-600">
+            Campañas en Meta Ads y Google Ads, testing A/B, segmentación, retargeting y reportes claros orientados a resultados.
+          </p>
         </li>
       </ul>
     </section>
 
-    <!-- Sobre mí -->
-    <section id="sobre" class="max-w-6xl mx-auto px-4 py-16">
-      <div class="grid md:grid-cols-3 gap-8 items-center rounded-3xl overflow-hidden" style="background:var(--navy)">
-        <div class="p-6 md:p-8">
-          <div class="aspect-square w-40 md:w-56 mx-auto rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg">
-            <img src="perfil.jpg" alt="Foto de Giamkarlo Marrero Vélez" class="w-full h-full object-cover">
+    <!-- Sobre mí (fondo navy + texto blanco + foto) -->
+    <section id="sobre" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+      <div class="grid md:grid-cols-3 gap-6 sm:gap-8 items-center rounded-3xl overflow-hidden" style="background:var(--navy)">
+        <!-- Foto -->
+        <div class="p-6 sm:p-8">
+          <div class="aspect-square w-36 sm:w-44 md:w-56 mx-auto rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg">
+            <img src="perfil.jpg" alt="Foto de Giamkarlo Marrero Vélez"
+                 width="512" height="512" loading="lazy" decoding="async"
+                 class="w-full h-full object-cover">
           </div>
         </div>
-        <div class="md:col-span-2 p-6 md:p-10 text-white">
+        <!-- Texto -->
+        <div class="md:col-span-2 p-6 sm:p-8 md:p-10 text-white">
           <h2 class="text-2xl md:text-3xl font-bold">Sobre mí</h2>
           <p class="mt-4 leading-relaxed text-white/90">
             Soy <strong>Giamkarlo Marrero Vélez</strong>, estudiante de la
@@ -152,17 +203,101 @@
             <strong>Mercadeo</strong> con una concentración menor en <strong>Gerencia</strong>.
           </p>
           <p class="mt-3 leading-relaxed text-white/85">
-            Me apasiona ayudar a negocios y emprendedores a crecer mediante marketing digital,
-            redes sociales y páginas web modernas.
+            Desde mis estudios he descubierto mi pasión por ayudar a negocios y emprendedores a crecer mediante estrategias de marketing digital,
+            manejo efectivo de redes sociales y el diseño de páginas web modernas. Mi meta es combinar la teoría académica con la práctica real para
+            ofrecer soluciones creativas, accesibles y enfocadas en resultados.
+          </p>
+          <p class="mt-3 leading-relaxed text-white/85">
+            Creo en la comunicación clara, el análisis de datos y la innovación constante para transformar ideas en proyectos que generen impacto.
           </p>
         </div>
       </div>
     </section>
 
     <!-- Contacto -->
-    <section id="contacto" class="max-w-4xl mx-auto px-4 py-16">
+    <section id="contacto" class="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+      <div class="h-[2px] w-16 rounded-full mb-3"
+           style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
-      <div class="mt-6 grid md:grid-cols-2 gap-6">
-        <a href="https://wa.me/17873595526" class="btn-navy flex items-center justify-center px-6 py-4 rounded-xl font-medium text-ce
+      <p class="mt-2 text-slate-600">Cuéntame qué necesitas y te propongo el plan más simple para empezar.</p>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-4 sm:gap-6">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/17873595526"
+           class="btn-navy flex items-center justify-center px-6 py-4 rounded-xl font-medium text-center w-full">
+          Escribir por WhatsApp<br><span class="opacity-80 text-sm">1787 359 5526</span>
+        </a>
+        <!-- Email -->
+        <div class="card p-5 sm:p-6">
+          <p class="text-sm text-slate-600">Correo</p>
+          <a class="mt-2 inline-block underline break-all" href="mailto:gmvmediaandmarketing@gmail.com">
+            gmvmediaandmarketing@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CTA final -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-14 text-center rounded-3xl border border-slate-200 bg-slate-50">
+      <h3 class="text-2xl md:text-3xl font-bold">¿Listo para impulsar tu marca?</h3>
+      <p class="mt-2 text-slate-600">Escríbeme y te propongo el plan más simple para empezar.</p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="https://wa.me/17873595526" class="btn-navy px-6 py-3 rounded-xl w-full sm:w-auto">WhatsApp</a>
+        <a href="mailto:gmvmediaandmarketing@gmail.com" class="px-6 py-3 rounded-xl border border-slate-300 w-full sm:w-auto">Correo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <span id="y"></span> GMV Media &amp; Marketing</p>
+      <div class="flex items-center gap-4">
+        <a href="#servicios" class="hover:underline">Servicios</a>
+        <a href="#sobre" class="hover:underline">Sobre mí</a>
+        <a href="#contacto" class="hover:underline">Contacto</a>
+        <a href="mailto:gmvmediaandmarketing@gmail.com" class="hover:underline">gmvmediaandmarketing@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: sombra scroll + menú móvil -->
+  <script>
+    // Año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Sombra al hacer scroll
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('shadow-md', window.scrollY > 4);
+    });
+
+    // Toggle menú móvil
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    menuBtn?.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+      const open = !mobileNav.classList.contains('hidden');
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuIcon.classList.toggle('hidden', open);
+      closeIcon.classList.toggle('hidden', !open);
+    });
+
+    // Cerrar menú móvil al hacer clic en un link
+    mobileNav?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
 
 
