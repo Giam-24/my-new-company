@@ -1,1 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mi Empresa – Soluciones que funcionan</title>
+  <meta name="description" content="Ayudo a [tu cliente ideal] a conseguir [beneficio] con [tu servicio]." />
+  <meta property="og:title" content="Mi Empresa" />
+  <meta property="og:description" content="Soluciones que funcionan." />
+  <link rel="icon" href="assets/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="antialiased text-slate-800">
+  <header class="max-w-6xl mx-auto p-4 flex items-center justify-between">
+    <h1 class="font-bold text-xl">Mi Empresa</h1>
+    <nav class="space-x-4">
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#contacto" class="px-3 py-2 rounded bg-black text-white">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="bg-slate-50">
+      <div class="max-w-6xl mx-auto px-4 py-20 text-center">
+        <h2 class="text-4xl md:text-5xl font-extrabold">[Tu propuesta de valor clara]</h2>
+        <p class="mt-4 text-lg">Ayudo a [nicho] a lograr [resultado] con [tu método/servicio].</p>
+        <a href="https://wa.me/1TU_NUMERO" class="mt-6 inline-block px-6 py-3 rounded-lg bg-black text-white">Habla conmigo por WhatsApp</a>
+      </div>
+    </section>
+
+    <section id="servicios" class="max-w-6xl mx-auto px-4 py-16">
+      <h3 class="text-2xl font-bold mb-6">Servicios</h3>
+      <ul class="grid md:grid-cols-3 gap-6">
+        <li class="p-6 border rounded-2xl shadow-sm">
+          <h4 class="font-semibold">Servicio A</h4>
+          <p class="text-sm mt-2">Beneficio 1 · Beneficio 2 · Beneficio 3</p>
+        </li>
+        <li class="p-6 border rounded-2xl shadow-sm">
+          <h4 class="font-semibold">Servicio B</h4>
+          <p class="text-sm mt-2">Beneficio 1 · Beneficio 2 · Beneficio 3</p>
+        </li>
+        <li class="p-6 border rounded-2xl shadow-sm">
+          <h4 class="font-semibold">Servicio C</h4>
+          <p class="text-sm mt-2">Beneficio 1 · Beneficio 2 · Beneficio 3</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="sobre" class="max-w-6xl mx-auto px-4 py-16">
+      <h3 class="text-2xl font-bold mb-4">Sobre mí</h3>
+      <p>Quién eres, por qué confían en ti, una mini historia y prueba social.</p>
+    </section>
+
+    <section id="contacto" class="max-w-3xl mx-auto px-4 py-16">
+      <h3 class="text-2xl font-bold mb-4">Contacto</h3>
+      <!-- Opción WhatsApp (sin backend) -->
+      <p class="mb-4">Escríbeme directo: <a class="underline" href="https://wa.me/1TU_NUMERO">WhatsApp</a></p>
+
+      <!-- Opción Formspree (gratis) -->
+      <form action="https://formspree.io/f/TU-CODIGO" method="POST" class="space-y-3">
+        <input class="w-full p-3 border rounded" name="nombre" placeholder="Tu nombre" required />
+        <input class="w-full p-3 border rounded" name="email" type="email" placeholder="Tu email" required />
+        <textarea class="w-full p-3 border rounded" name="mensaje" rows="4" placeholder="Cuéntame qué necesitas" required></textarea>
+        <button class="px-5 py-3 rounded bg-black text-white">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="text-center text-sm text-slate-500 p-6">
+    © <span id="y"></span> Mi Empresa • <a href="/privacidad.html" class="underline">Privacidad</a>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
 
