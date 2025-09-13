@@ -8,17 +8,14 @@
   <meta property="og:title" content="GMV Media & Marketing" />
   <meta property="og:description" content="Ayudo a emprendedores y negocios locales a crecer su presencia digital con marketing estratégico, manejo de redes y páginas web modernas." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/og-image.jpg" />
-  <link rel="icon" href="assets/favicon.png" />
+  <meta property="og:image" content="perfil.jpg" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root{
-      --navy:#0a1f44; /* azul marino */
-    }
+    :root{ --navy:#0a1f44; }
     html{ scroll-behavior:smooth; }
 
-    /* Fondo global suave: degradés + grid sutil */
     body{
       background:
         radial-gradient(1000px 600px at -10% -10%, rgba(10,31,68,.06), transparent),
@@ -30,7 +27,6 @@
       background-attachment: fixed;
     }
 
-    /* Textura suave en el Hero (diagonales muy tenues) */
     .hero-texture::before{
       content:"";
       position:absolute; inset:0;
@@ -41,7 +37,6 @@
       mix-blend-mode:multiply;
     }
 
-    /* Tarjetas con borde degradé y elevación sutil */
     .card{
       position:relative;
       background:#fff;
@@ -67,7 +62,6 @@
       border-color:rgba(100,116,139,.35);
     }
 
-    /* Botón navy con efecto “shine” */
     .btn-navy{
       position:relative; overflow:hidden;
       background:var(--navy); color:#fff;
@@ -84,11 +78,13 @@
 
 <body class="antialiased text-slate-800">
 
-  <!-- Header fijo con sombra en scroll -->
+  <!-- Header -->
   <header id="topbar" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 transition-shadow">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <a href="#top" class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full" style="background:var(--navy)"></div>
+        <!-- Foto del header -->
+        <img src="perfil.jpg" alt="Foto de Giamkarlo Marrero Vélez"
+             class="w-10 h-10 rounded-full object-cover border-2 border-slate-200">
         <span class="font-semibold tracking-wide">GMV <span class="text-slate-500">Media &amp; Marketing</span></span>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
@@ -100,7 +96,7 @@
   </header>
 
   <main id="top">
-    <!-- Hero con textura -->
+    <!-- Hero -->
     <section class="relative overflow-hidden bg-slate-50 hero-texture">
       <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
@@ -121,140 +117,52 @@
       </div>
     </section>
 
-    <!-- Separador ondulado -->
-    <div aria-hidden="true">
-      <svg viewBox="0 0 1440 120" class="w-full block" preserveAspectRatio="none">
-        <path d="M0,64 C240,112 480,0 720,32 C960,64 1200,144 1440,96 L1440,0 L0,0 Z"
-              fill="rgba(10,31,68,0.06)"></path>
-      </svg>
-    </div>
-
     <!-- Servicios -->
     <section id="servicios" class="max-w-6xl mx-auto px-4 py-16">
-      <div class="h-[2px] w-16 rounded-full mb-3"
-           style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold">Servicios</h2>
-      <p class="mt-2 text-slate-600 max-w-2xl">Paquetes a la medida: empezamos simple, medimos y escalamos lo que funciona.</p>
-
       <ul class="mt-8 grid gap-6 md:grid-cols-3">
-        <!-- Servicio 1 -->
-        <li class="card p-6 shadow-sm hover:shadow">
+        <li class="card p-6">
           <h3 class="font-semibold text-lg">Creación y diseño de páginas web</h3>
-          <p class="text-sm mt-2 text-slate-600">
-            Sitios modernos, rápidos y mobile-first. Diseño a tu medida para transmitir profesionalismo y convertir visitas en clientes.
-          </p>
+          <p class="text-sm mt-2 text-slate-600">Sitios modernos, rápidos y mobile-first.</p>
         </li>
-
-        <!-- Servicio 2 -->
-        <li class="card p-6 shadow-sm hover:shadow">
+        <li class="card p-6">
           <h3 class="font-semibold text-lg">Manejo de redes sociales</h3>
-          <p class="text-sm mt-2 text-slate-600">
-            Gestión de Instagram, Facebook y TikTok: estrategia, calendario, diseño de piezas, copies y community management.
-          </p>
+          <p class="text-sm mt-2 text-slate-600">Gestión de Instagram, Facebook y TikTok.</p>
         </li>
-
-        <!-- Servicio 3 -->
-        <li class="card p-6 shadow-sm hover:shadow">
+        <li class="card p-6">
           <h3 class="font-semibold text-lg">Mercadeo y publicidad digital</h3>
-          <p class="text-sm mt-2 text-slate-600">
-            Campañas en Meta Ads y Google Ads, testing A/B, segmentación, retargeting y reportes claros orientados a resultados.
-          </p>
+          <p class="text-sm mt-2 text-slate-600">Campañas en Meta Ads y Google Ads.</p>
         </li>
       </ul>
     </section>
 
-<!-- Sobre mí (fondo azul marino + texto blanco + foto) -->
-<section id="sobre" class="max-w-6xl mx-auto px-4 py-16">
-  <div class="grid md:grid-cols-3 gap-8 items-center rounded-3xl overflow-hidden"
-       style="background:var(--navy)">
-    
-    <!-- Foto -->
-    <div class="p-6 md:p-8">
-      <div class="aspect-square w-40 md:w-56 mx-auto rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg">
-        <img src="assets/perfil.jpg" alt="Foto de Giamkarlo Marrero Vélez" class="w-full h-full object-cover">
-      </div>
-    </div>
-
-    <!-- Texto -->
-    <div class="md:col-span-2 p-6 md:p-10 text-white">
-      <h2 class="text-2xl md:text-3xl font-bold">Sobre mí</h2>
-      <p class="mt-4 leading-relaxed text-white/90">
-        Soy <strong>Giamkarlo Marrero Vélez</strong>, estudiante de la 
-        <strong>Universidad de Puerto Rico en Ponce</strong>, donde curso un bachillerato en 
-        <strong>Mercadeo</strong> con una concentración menor en <strong>Gerencia</strong>.
-      </p>
-      <p class="mt-3 leading-relaxed text-white/85">
-        Desde mis estudios he descubierto mi pasión por ayudar a negocios y emprendedores a crecer mediante estrategias de marketing digital,
-        manejo efectivo de redes sociales y el diseño de páginas web modernas. Mi meta es combinar la teoría académica con la práctica real para
-        ofrecer soluciones creativas, accesibles y enfocadas en resultados.
-      </p>
-      <p class="mt-3 leading-relaxed text-white/85">
-        Creo en la comunicación clara, el análisis de datos y la innovación constante para transformar ideas en proyectos que generen impacto.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Contacto -->
-    <section id="contacto" class="max-w-4xl mx-auto px-4 py-16">
-      <div class="h-[2px] w-16 rounded-full mb-3"
-           style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
-      <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
-      <p class="mt-2 text-slate-600">Cuéntame qué necesitas y te propongo el plan más simple para empezar.</p>
-
-      <div class="mt-6 grid md:grid-cols-2 gap-6">
-        <!-- WhatsApp directo -->
-        <a href="https://wa.me/17873595526" class="btn-navy flex items-center justify-center px-6 py-4 rounded-xl font-medium text-center">
-          Escribir por WhatsApp<br><span class="opacity-80 text-sm">1787 359 5526</span>
-        </a>
-
-        <!-- Email directo -->
-        <div class="card p-6">
-          <p class="text-sm text-slate-600">Correo</p>
-          <a class="mt-2 inline-block underline break-all" href="mailto:gmvmediaandmarketing@gmail.com">
-            gmvmediaandmarketing@gmail.com
-          </a>
-          <!-- Si luego usas Formspree, aquí puedes insertar el formulario -->
+    <!-- Sobre mí -->
+    <section id="sobre" class="max-w-6xl mx-auto px-4 py-16">
+      <div class="grid md:grid-cols-3 gap-8 items-center rounded-3xl overflow-hidden" style="background:var(--navy)">
+        <div class="p-6 md:p-8">
+          <div class="aspect-square w-40 md:w-56 mx-auto rounded-2xl overflow-hidden border-2 border-white/20 shadow-lg">
+            <img src="perfil.jpg" alt="Foto de Giamkarlo Marrero Vélez" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <div class="md:col-span-2 p-6 md:p-10 text-white">
+          <h2 class="text-2xl md:text-3xl font-bold">Sobre mí</h2>
+          <p class="mt-4 leading-relaxed text-white/90">
+            Soy <strong>Giamkarlo Marrero Vélez</strong>, estudiante de la
+            <strong>Universidad de Puerto Rico en Ponce</strong>, donde curso un bachillerato en
+            <strong>Mercadeo</strong> con una concentración menor en <strong>Gerencia</strong>.
+          </p>
+          <p class="mt-3 leading-relaxed text-white/85">
+            Me apasiona ayudar a negocios y emprendedores a crecer mediante marketing digital,
+            redes sociales y páginas web modernas.
+          </p>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- CTA final -->
-  <section class="relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 py-14 text-center rounded-3xl border border-slate-200 bg-slate-50">
-      <h3 class="text-2xl md:text-3xl font-bold">¿Listo para impulsar tu marca?</h3>
-      <p class="mt-2 text-slate-600">Escríbeme y te propongo el plan más simple para empezar.</p>
-      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="https://wa.me/17873595526" class="btn-navy px-6 py-3 rounded-xl">WhatsApp</a>
-        <a href="mailto:gmvmediaandmarketing@gmail.com" class="px-6 py-3 rounded-xl border border-slate-300">Correo</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>© <span id="y"></span> GMV Media &amp; Marketing</p>
-      <div class="flex items-center gap-4">
-        <a href="#servicios" class="hover:underline">Servicios</a>
-        <a href="#sobre" class="hover:underline">Sobre mí</a>
-        <a href="#contacto" class="hover:underline">Contacto</a>
-        <a href="mailto:gmvmediaandmarketing@gmail.com" class="hover:underline">gmvmediaandmarketing@gmail.com</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Script: sombra al hacer scroll -->
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    const topbar = document.getElementById('topbar');
-    window.addEventListener('scroll', () => {
-      topbar.classList.toggle('shadow-md', window.scrollY > 4);
-    });
-  </script>
-</body>
-</html>
+    <!-- Contacto -->
+    <section id="contacto" class="max-w-4xl mx-auto px-4 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <a href="https://wa.me/17873595526" class="btn-navy flex items-center justify-center px-6 py-4 rounded-xl font-medium text-ce
 
 
