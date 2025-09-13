@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -13,107 +13,148 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root{ --navy:#0a1f44; }  /* azul marino */
-    html{ scroll-behavior:smooth; }
+    :root{
+      --navy:#0a1f44;
+      /* LIGHT */
+      --bg: #ffffff;
+      --text: #0f172a;         /* slate-900 */
+      --muted: #475569;        /* slate-600 */
+      --card: #ffffff;
+      --border: rgba(100,116,139,.25);
+      --soft: #f8fafc;         /* slate-50 */
+      --grid-stroke: rgba(15,23,42,0.06);
+      --hero-overlay-1: rgba(10,31,68,.04);
+      --hero-overlay-2: rgba(15,23,42,.035);
+    }
+    html[data-theme="dark"]{
+      /* DARK */
+      --bg: #0b1220;           /* navy muy oscuro */
+      --text: #e5e7eb;         /* slate-200 */
+      --muted: #cbd5e1;        /* slate-300 */
+      --card: #0f1a2e;         /* panel oscuro */
+      --border: rgba(148,163,184,.25);
+      --soft: #0d1424;         /* bg secciones suaves */
+      --grid-stroke: rgba(203,213,225,0.06);
+      --hero-overlay-1: rgba(255,255,255,.04);
+      --hero-overlay-2: rgba(255,255,255,.03);
+    }
 
-    /* Fondo global suave: degradés + grid sutil */
+    html{ scroll-behavior:smooth; }
+    body{ color:var(--text); background:var(--bg); }
+
+    /* Fondo global con textura (se adapta a claro/oscuro) */
     body{
       background:
-        radial-gradient(1000px 600px at -10% -10%, rgba(10,31,68,.06), transparent),
-        radial-gradient(900px 500px at 110% 120%, rgba(10,31,68,.05), transparent),
+        radial-gradient(1000px 600px at -10% -10%, var(--hero-overlay-1), transparent),
+        radial-gradient(900px 500px at 110% 120%, var(--hero-overlay-1), transparent),
         url("data:image/svg+xml;utf8,\
         <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'>\
-          <path d='M32 0H0V32' stroke='rgba(15,23,42,0.06)'/>\
+          <path d='M32 0H0V32' stroke='__GRID__'/>\
         </svg>") repeat;
       background-attachment: fixed;
     }
+    /* Inyectamos el color del grid en el SVG inline */
+    body{ background-image:
+      radial-gradient(1000px 600px at -10% -10%, var(--hero-overlay-1), transparent),
+      radial-gradient(900px 500px at 110% 120%, var(--hero-overlay-1), transparent),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'><path d='M32 0H0V32' stroke='${encodeURIComponent(''+getComputedStyle(document.documentElement).getPropertyValue('--grid-stroke'))}'/></svg>");
+    }
 
-    /* Textura suave en el Hero (diagonales muy tenues) */
+    /* Hero textura (usa overlays variables) */
+    .hero-texture{ background-color: var(--soft); position:relative; }
     .hero-texture::before{
-      content:"";
-      position:absolute; inset:0;
-      pointer-events:none;
+      content:""; position:absolute; inset:0; pointer-events:none;
       background:
-        linear-gradient(120deg, rgba(10,31,68,.04) 0%, rgba(10,31,68,0) 35%),
-        repeating-linear-gradient(135deg, rgba(15,23,42,.035) 0 2px, rgba(15,23,42,0) 2px 8px);
+        linear-gradient(120deg, var(--hero-overlay-1) 0%, rgba(0,0,0,0) 35%),
+        repeating-linear-gradient(135deg, var(--hero-overlay-2) 0 2px, rgba(0,0,0,0) 2px 8px);
       mix-blend-mode:multiply;
     }
 
-    /* Tarjetas con borde degradé y elevación sutil */
+    /* Tarjetas */
     .card{
-      position:relative;
-      background:#fff;
-      border-radius:1rem;
-      border:1px solid rgba(100,116,139,.25);
+      position:relative; background:var(--card); border-radius:1rem;
+      border:1px solid var(--border);
       box-shadow:0 1px 2px rgba(2,6,23,.04);
       transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
     .card::before{
-      content:"";
-      position:absolute; inset:-1px;
-      border-radius:inherit;
-      padding:1px;
+      content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px;
       background:linear-gradient(135deg, rgba(10,31,68,.35), rgba(10,31,68,0));
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor; mask-composite: exclude;
     }
-    .card:hover{
-      transform:translateY(-2px);
-      box-shadow:0 10px 24px rgba(2,6,23,.08);
-      border-color:rgba(100,116,139,.35);
-    }
+    .card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(2,6,23,.12); }
 
-    /* Botón navy con efecto “shine” */
-    .btn-navy{
-      position:relative; overflow:hidden;
-      background:var(--navy); color:#fff;
-    }
+    /* Botón navy con “shine” */
+    .btn-navy{ position:relative; overflow:hidden; background:var(--navy); color:#fff; }
     .btn-navy::after{
-      content:""; position:absolute; inset:-100% -30% auto auto; width:40%;
-      transform:rotate(25deg);
+      content:""; position:absolute; inset:-100% -30% auto auto; width:40%; transform:rotate(25deg);
       background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
       transition:transform .45s ease;
     }
     .btn-navy:hover::after{ transform:translateX(-140%) rotate(25deg); }
+
+    /* Utilidades de color para textos finos */
+    .muted{ color:var(--muted); }
+    .soft-section{ background:var(--soft); }
+
+    /* Header / footer adaptables */
+    .surface{ background: color-mix(in oklab, var(--bg), #ffffff 10%); }
+    html[data-theme="dark"] .surface{ background: color-mix(in oklab, var(--bg), #000000 10%); }
+    .border-soft{ border-color: var(--border); }
   </style>
 </head>
 
-<body class="antialiased text-slate-800">
+<body class="antialiased">
 
-  <!-- Header: menú móvil + desktop -->
-  <header id="topbar" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 transition-shadow">
+  <!-- Header con toggle dark -->
+  <header id="topbar" class="sticky top-0 z-50 surface backdrop-blur border-b border-soft transition-shadow">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <!-- Branding (avatar + nombre) -->
+      <!-- Branding -->
       <a href="#top" class="flex items-center gap-3">
         <img src="perfil.jpg" alt="Foto de Giamkarlo Marrero Vélez"
              width="80" height="80" loading="lazy" decoding="async"
-             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-slate-200">
-        <span class="font-semibold tracking-wide">GMV <span class="text-slate-500">Media &amp; Marketing</span></span>
+             class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-soft">
+        <span class="font-semibold tracking-wide">GMV <span class="muted">Media &amp; Marketing</span></span>
       </a>
 
-      <!-- Botón hamburguesa (solo móvil) -->
-      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-300"
-              aria-label="Abrir menú" aria-expanded="false">
-        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
-             stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
-             stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
+      <div class="flex items-center gap-3">
+        <!-- Botón tema -->
+        <button id="themeBtn" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-soft"
+                aria-label="Cambiar tema">
+          <!-- luna -->
+          <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/>
+          </svg>
+          <!-- sol -->
+          <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 4.5a1 1 0 011-1h0a1 1 0 011 1v1a1 1 0 11-2 0v-1zM12 18.5a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM4.5 13a1 1 0 010-2h1a1 1 0 110 2h-1zM18.5 13a1 1 0 110-2h1a1 1 0 110 2h-1zM6.05 6.05a1 1 0 011.41 0l.7.7a1 1 0 11-1.41 1.41l-.7-.7a1 1 0 010-1.41zM15.84 15.84a1 1 0 011.41 0l.7.7a1 1 0 11-1.41 1.41l-.7-.7a1 1 0 010-1.41zM6.05 17.95a1 1 0 000 1.41l.7.7a1 1 0 101.41-1.41l-.7-.7a1 1 0 00-1.41 0zM15.84 8.16a1 1 0 000-1.41l.7-.7a1 1 0 10-1.41-1.41l-.7.7a1 1 0 001.41 1.41z"/>
+            <circle cx="12" cy="12" r="3.25"/>
+          </svg>
+        </button>
 
-      <!-- Nav desktop -->
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#servicios" class="hover:opacity-80">Servicios</a>
-        <a href="#sobre" class="hover:opacity-80">Sobre mí</a>
-        <a href="#contacto" class="px-3 py-2 rounded-lg text-white bg-[var(--navy)]">Contacto</a>
-      </nav>
+        <!-- Botón hamburguesa móvil -->
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-soft"
+                aria-label="Abrir menú" aria-expanded="false">
+          <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
+               stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
+               stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Nav desktop -->
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#servicios" class="hover:opacity-80">Servicios</a>
+          <a href="#sobre" class="hover:opacity-80">Sobre mí</a>
+          <a href="#contacto" class="px-3 py-2 rounded-lg text-white bg-[var(--navy)]">Contacto</a>
+        </nav>
+      </div>
     </div>
 
-    <!-- Nav móvil desplegable -->
-    <nav id="mobileNav" class="md:hidden hidden border-t border-slate-200 bg-white">
+    <!-- Nav móvil -->
+    <nav id="mobileNav" class="md:hidden hidden border-t border-soft" style="background:var(--bg)">
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
         <a href="#servicios" class="py-2">Servicios</a>
         <a href="#sobre" class="py-2">Sobre mí</a>
@@ -123,13 +164,13 @@
   </header>
 
   <main id="top">
-    <!-- Hero con textura -->
-    <section class="relative overflow-hidden bg-slate-50 hero-texture">
+    <!-- Hero -->
+    <section class="relative overflow-hidden hero-texture">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-28 text-center">
-        <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
-          Ayudo a emprendedores y negocios locales a <span class="text-slate-500">crecer su presencia digital</span>
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+          Ayudo a emprendedores y negocios locales a <span class="muted">crecer su presencia digital</span>
         </h1>
-        <p class="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl sm:max-w-3xl mx-auto">
+        <p class="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl muted max-w-2xl sm:max-w-3xl mx-auto">
           Con marketing estratégico, manejo de redes sociales y páginas web modernas,
           en <strong>GMV Media &amp; Marketing</strong> impulsamos tu marca hacia el siguiente nivel.
         </p>
@@ -139,7 +180,8 @@
             Hablemos por WhatsApp
           </a>
           <a href="#servicios"
-             class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-slate-700 hover:bg-white/60 w-full sm:w-auto">
+             class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-soft hover:bg-white/10 w-full sm:w-auto"
+             style="color:var(--text)">
             Ver servicios
           </a>
         </div>
@@ -159,24 +201,24 @@
       <div class="h-[2px] w-16 rounded-full mb-3"
            style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold">Servicios</h2>
-      <p class="mt-2 text-slate-600 max-w-2xl">Paquetes a la medida: empezamos simple, medimos y escalamos lo que funciona.</p>
+      <p class="mt-2 muted max-w-2xl">Paquetes a la medida: empezamos simple, medimos y escalamos lo que funciona.</p>
 
       <ul class="mt-6 sm:mt-8 grid gap-4 sm:gap-6 md:grid-cols-3">
         <li class="card p-5 sm:p-6">
           <h3 class="font-semibold text-lg">Creación y diseño de páginas web</h3>
-          <p class="text-sm mt-2 text-slate-600">
+          <p class="text-sm mt-2 muted">
             Sitios modernos, rápidos y mobile-first. Diseño a tu medida para transmitir profesionalismo y convertir visitas en clientes.
           </p>
         </li>
         <li class="card p-5 sm:p-6">
           <h3 class="font-semibold text-lg">Manejo de redes sociales</h3>
-          <p class="text-sm mt-2 text-slate-600">
+          <p class="text-sm mt-2 muted">
             Gestión de Instagram, Facebook y TikTok: estrategia, calendario, diseño de piezas, copies y community management.
           </p>
         </li>
         <li class="card p-5 sm:p-6">
           <h3 class="font-semibold text-lg">Mercadeo y publicidad digital</h3>
-          <p class="text-sm mt-2 text-slate-600">
+          <p class="text-sm mt-2 muted">
             Campañas en Meta Ads y Google Ads, testing A/B, segmentación, retargeting y reportes claros orientados a resultados.
           </p>
         </li>
@@ -219,7 +261,7 @@
       <div class="h-[2px] w-16 rounded-full mb-3"
            style="background:linear-gradient(90deg, rgba(10,31,68,.25), rgba(10,31,68,0));"></div>
       <h2 class="text-2xl md:text-3xl font-bold">Contacto</h2>
-      <p class="mt-2 text-slate-600">Cuéntame qué necesitas y te propongo el plan más simple para empezar.</p>
+      <p class="mt-2 muted">Cuéntame qué necesitas y te propongo el plan más simple para empezar.</p>
 
       <div class="mt-6 grid md:grid-cols-2 gap-4 sm:gap-6">
         <!-- WhatsApp -->
@@ -229,7 +271,7 @@
         </a>
         <!-- Email -->
         <div class="card p-5 sm:p-6">
-          <p class="text-sm text-slate-600">Correo</p>
+          <p class="text-sm muted">Correo</p>
           <a class="mt-2 inline-block underline break-all" href="mailto:gmvmediaandmarketing@gmail.com">
             gmvmediaandmarketing@gmail.com
           </a>
@@ -240,30 +282,30 @@
 
   <!-- CTA final -->
   <section class="relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-14 text-center rounded-3xl border border-slate-200 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-14 text-center rounded-3xl border border-soft soft-section">
       <h3 class="text-2xl md:text-3xl font-bold">¿Listo para impulsar tu marca?</h3>
-      <p class="mt-2 text-slate-600">Escríbeme y te propongo el plan más simple para empezar.</p>
+      <p class="mt-2 muted">Escríbeme y te propongo el plan más simple para empezar.</p>
       <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
         <a href="https://wa.me/17873595526" class="btn-navy px-6 py-3 rounded-xl w-full sm:w-auto">WhatsApp</a>
-        <a href="mailto:gmvmediaandmarketing@gmail.com" class="px-6 py-3 rounded-xl border border-slate-300 w-full sm:w-auto">Correo</a>
+        <a href="mailto:gmvmediaandmarketing@gmail.com" class="px-6 py-3 rounded-xl border border-soft w-full sm:w-auto" style="color:var(--text)">Correo</a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
+  <footer class="border-t border-soft surface">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-sm muted flex flex-col md:flex-row items-center justify-between gap-4">
       <p>© <span id="y"></span> GMV Media &amp; Marketing</p>
       <div class="flex items-center gap-4">
-        <a href="#servicios" class="hover:underline">Servicios</a>
-        <a href="#sobre" class="hover:underline">Sobre mí</a>
-        <a href="#contacto" class="hover:underline">Contacto</a>
-        <a href="mailto:gmvmediaandmarketing@gmail.com" class="hover:underline">gmvmediaandmarketing@gmail.com</a>
+        <a href="#servicios" class="hover:underline" style="color:var(--text)">Servicios</a>
+        <a href="#sobre" class="hover:underline" style="color:var(--text)">Sobre mí</a>
+        <a href="#contacto" class="hover:underline" style="color:var(--text)">Contacto</a>
+        <a href="mailto:gmvmediaandmarketing@gmail.com" class="hover:underline" style="color:var(--text)">gmvmediaandmarketing@gmail.com</a>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts: sombra scroll + menú móvil -->
+  <!-- Scripts -->
   <script>
     // Año dinámico
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -286,8 +328,6 @@
       menuIcon.classList.toggle('hidden', open);
       closeIcon.classList.toggle('hidden', !open);
     });
-
-    // Cerrar menú móvil al hacer clic en un link
     mobileNav?.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         mobileNav.classList.add('hidden');
@@ -296,8 +336,45 @@
         closeIcon.classList.add('hidden');
       });
     });
+
+    // ----- Tema (light/dark) -----
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const moonIcon = document.getElementById('moonIcon');
+    const sunIcon  = document.getElementById('sunIcon');
+
+    // Preferencia guardada o sistema
+    const saved = localStorage.getItem('gmv-theme');
+    if(saved){
+      html.setAttribute('data-theme', saved);
+      sunIcon.classList.toggle('hidden', saved !== 'dark');
+      moonIcon.classList.toggle('hidden', saved === 'dark');
+    }else{
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = prefersDark ? 'dark' : 'light';
+      html.setAttribute('data-theme', initial);
+      sunIcon.classList.toggle('hidden', initial !== 'dark');
+      moonIcon.classList.toggle('hidden', initial === 'dark');
+    }
+
+    // Cambiar tema
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('gmv-theme', next);
+      sunIcon.classList.toggle('hidden', next !== 'dark');
+      moonIcon.classList.toggle('hidden', next === 'dark');
+
+      // Recalcular color del grid en el fondo (para el SVG inline)
+      document.body.style.backgroundImage =
+        `radial-gradient(1000px 600px at -10% -10%, var(--hero-overlay-1), transparent),
+         radial-gradient(900px 500px at 110% 120%, var(--hero-overlay-1), transparent),
+         url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'><path d='M32 0H0V32' stroke='${encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--grid-stroke').trim())}'/></svg>")`;
+    });
   </script>
 </body>
 </html>
+
 
 
